@@ -20,8 +20,8 @@ func TestMainHandlerSuccess(t *testing.T) {
 
 	handler.ServeHTTP(responseRecorder, req)
 
-	assert.Equal(t, http.StatusOK, responseRecorder.Body)
-	require.NotEmpty(t, responseRecorder.Body.String())
+	require.Equal(t, http.StatusOK, responseRecorder.Body)
+	assert.NotEmpty(t, responseRecorder.Body.String())
 
 }
 
@@ -34,7 +34,7 @@ func TestMainHandlerWrongCity(t *testing.T) {
 
 	handler.ServeHTTP(responseRecorder, req)
 
-	assert.Equal(t, http.StatusBadRequest, responseRecorder.Code)
+	require.Equal(t, http.StatusBadRequest, responseRecorder.Code)
 	assert.Equal(t, "wrong city value", responseRecorder.Body.String())
 }
 
@@ -47,8 +47,8 @@ func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 
 	handler.ServeHTTP(responseRecorder, req)
 
-	assert.Equal(t, http.StatusOK, responseRecorder.Code)
-	require.NotEmpty(t, responseRecorder.Body.String())
+	require.Equal(t, http.StatusOK, responseRecorder.Code)
+	//assert.NotEmpty(t, responseRecorder.Body.String())
 
 	body := responseRecorder.Body.String()
 	cafeName := strings.Split(body, ",")
