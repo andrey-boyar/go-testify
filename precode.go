@@ -26,7 +26,6 @@ func mainHandle(w http.ResponseWriter, req *http.Request) {
 	}
 
 	city := req.URL.Query().Get("city")
-
 	cafe, ok := cafeList[city]
 	if !ok {
 		w.WriteHeader(http.StatusBadRequest)

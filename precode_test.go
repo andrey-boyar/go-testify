@@ -17,7 +17,6 @@ func TestMainHandlerSuccess(t *testing.T) {
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
-
 	handler.ServeHTTP(responseRecorder, req)
 
 	require.Equal(t, http.StatusOK, responseRecorder.Body)
@@ -31,7 +30,6 @@ func TestMainHandlerWrongCity(t *testing.T) {
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
-
 	handler.ServeHTTP(responseRecorder, req)
 
 	require.Equal(t, http.StatusBadRequest, responseRecorder.Code)
@@ -44,10 +42,9 @@ func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
-
 	handler.ServeHTTP(responseRecorder, req)
-
 	require.Equal(t, http.StatusOK, responseRecorder.Code)
+
 	//assert.NotEmpty(t, responseRecorder.Body.String())
 
 	body := responseRecorder.Body.String()
